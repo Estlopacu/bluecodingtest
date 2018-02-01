@@ -4,7 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "prestart": "babel-node tools/startMessage.js",
     "browser": "npm-run-all --parallel open:src lint:watch",
     "start": "babel-node tools/srcServer.js",
     "open:src": "babel-node tools/srcServer.js",

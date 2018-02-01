@@ -3,7 +3,7 @@ import Header from "../components/common/Header";
 import { Provider } from 'react-redux';
 import blueCodingtest from '../reducers';
 import { createStore } from 'redux';
-require('../images/favicon.png');
+// require('../images/favicon.png');
 
 class App extends React.Component {
   render() {

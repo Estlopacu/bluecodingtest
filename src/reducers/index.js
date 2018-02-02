@@ -2,7 +2,8 @@ const defaultState = {
   searchText: null,
   searchResults: [],
   searchEnable: false,
-  showModal: false
+  showModal: false,
+  selectedGif: null
 };
 
 const global = (state = defaultState, action) => {

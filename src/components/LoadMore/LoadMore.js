@@ -24,26 +24,28 @@ class LoadMore extends React.Component {
     });
   }
   render() {
-    const { searchEnable } = this.props;
+    const { searchEnable, searchResults } = this.props;
     return (
-      searchEnable &&
-        <div className="d-flex flex-row flex-wrap justify-content-center justify-content-around">
-        <button type="button" className="btn btn-info load-more" onClick={this.onMore}>Load More!</button>
-      </div>
+    (searchEnable && searchResults.length !== 0) ?
+        <div className="d-flex flex-nowrap justify-content-center">
+        <button type="button" className="btn btn-raised btn-primary" onClick={this.onMore}>Load More!</button>
+      </div> : null
     );
   }
 }
 
 LoadMore.propTypes = {
   searchText: PropTypes.string,
-  searchEnable: PropTypes.boolean,
-  dispatch: PropTypes.func.isRequired
+  searchEnable: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired,
+  searchResults: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
     searchText: state.searchText,
-    searchEnable: state.searchEnable
+    searchEnable: state.searchEnable,
+    searchResults: state.searchResults
   };
 };
 

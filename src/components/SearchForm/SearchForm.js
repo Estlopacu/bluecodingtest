@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import giphy from "../../utils/giphy";
-import { connect } from 'react-redux';
 import { searchGifs } from '../../actions';
+import { connect } from 'react-redux';
 
 class SearchForm extends React.Component {
   constructor(){
@@ -33,12 +33,12 @@ class SearchForm extends React.Component {
   }
   render() {
     return (
-      <div className="d-flex flex-row justify-content-center">
+      <div className="d-flex justify-content-center">
         <form onSubmit={this.search} className="col col-sm-6 9 p-2">
           <div className="form-group">
-            <input type="text" className="form-control" placeholder="go... go..." name="search"/>
+            <input type="text" className="form-control" placeholder="type somenthing" name="search"/>
           </div>
-          <div className="form-group">
+          <div className="form-group text-center">
             <input type="submit" className="btn btn-raised btn-primary" value="Search"/>
           </div>
         </form>

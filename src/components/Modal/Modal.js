@@ -7,19 +7,47 @@ import get from "lodash/get";
 import { toggleModal } from '../../actions';
 
 class Modal extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      currentSlide: 0
+    };
+    this.changeSlide = this.changeSlide.bind(this);
+  }
+  componentWillReceiveProps(nextProps) {
+    if(this.state.selectedGif !== nextProps.selectedGif){
+      this.setState({
+        currentSlide: nextProps.selectedGif
+      });
+    }
+  }
+  changeSlide(value) {
+    this.setState({
+      currentSlide: this.state.currentSlide + value
+    });
+  }
   render() {
-    console.log(this.props.selectedGif);
+    const { searchResults } = this.props;
     return (
       <ReactModal
          isOpen={this.props.showModal}
-         shouldCloseOnOverlayClick={true}
          className="Modal"
          overlayClassName="Overlay"
+         ariaHideApp={false}
       >
-        <div className="d-flex flex-column justify-content-center">
-          <h1 className="text-center">{get(this.props.selectedGif, "title")}</h1>
-          <img src={get(this.props.selectedGif, "images.original.url")} />
-          <button type="button" className="btn btn-info load-more" onClick={() => {this.props.dispatch(toggleModal());}}>Close</button>
+        {searchResults.map((thumbnail, index) => {
+          return (
+            index === this.state.currentSlide && <div className="d-flex align-items-center p-3" key={index}>
+              <img src={get(thumbnail, "images.fixed_height.url")}/>
+            </div>
+          );
+        })}
+        <div className="d-flex flex-wrap justify-content-center justify-content-around p-3">
+          <button type="button" className="btn btn-raised btn-primary" disabled={this.state.currentSlide === 0} onClick={() => {this.changeSlide(-1);}}>Before</button>
+          <button type="button" className="btn btn-raised btn-primary" disabled={this.state.currentSlide >= searchResults.length - 1} onClick={() => {this.changeSlide(1);}}>Next</button>
+        </div>
+        <div className="d-flex flex-wrap justify-content-center justify-content-around p-3">
+          <button type="button" className="btn btn-raised btn-link" onClick={() => {this.props.dispatch(toggleModal());}}>Close</button>
         </div>
       </ReactModal>
     );
@@ -27,14 +55,16 @@ class Modal extends React.Component {
 }
 
 Modal.propTypes = {
-  showModal: PropTypes.boolean,
-  selectedGif: PropTypes.object,
-  dispatch: PropTypes.func.isRequired
+  showModal: PropTypes.bool,
+  searchResults: PropTypes.node,
+  dispatch: PropTypes.func.isRequired,
+  selectedGif: PropTypes.number
 };
 
 const mapStateToProps = state => {
   return {
     showModal: state.showModal,
+    searchResults: state.searchResults,
     selectedGif: state.selectedGif
   };
 };

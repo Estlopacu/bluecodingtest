@@ -4,8 +4,8 @@ const privateKey = "laDUQ8RYLnHN0oiuUVZ9ojMPRXVUqYQX";
 const get = require('lodash/get');
 
 const giphy = {
-  getRandom: (searchText, page) => {
-    return fetch(`${githubURL}random?api_key=${privateKey}&tag=search&rating=G&lang=en`)
+  getRandom: () => {
+    return fetch(`${githubURL}random?api_key=${privateKey}&tag=acme&rating=G&lang=en`)
       .then(response => response.json())
       .then(json => json.data);
   },

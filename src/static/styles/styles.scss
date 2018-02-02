@@ -1,6 +1,6 @@
-html, body, #app {
-  height: 100%;
-}
+// html, body, #app {
+//   height: 100%;
+// }
 
 form {
   min-width: 50%;
@@ -17,11 +17,11 @@ h1, h2 {
 
 .thumbnail {
   height: 150px;
-}
 
-.thumbnail:hover {
-  cursor: pointer;
-  transform: scale(1.5);
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+  }
 }
 
 .full-width {
@@ -34,6 +34,24 @@ h1, h2 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) !important;
+  padding: 40px;
+  background-color: #009688;
+
+  img {
+    width: 300px;
+    min-height: 200px;
+  }
+  h1 {
+    color: #000;
+  }
+
+  .btn-link {
+    color:white;
+  }
+
+  @media(max-width: 500px){
+    width: 100%;
+  }
 }
 
 .Overlay {
@@ -42,9 +60,5 @@ h1, h2 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: white;
-}
-
-.Modal h1 {
-  color: #000;
+  background-color: rgba(0, 0, 0, 0.85);
 }

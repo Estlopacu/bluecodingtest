@@ -1,11 +1,11 @@
-export const searchGifs = (payload) => {
+export const searchGifs = payload => {
   return {
     type: 'SEARCH_GIFS',
     payload
   };
 };
 
-export const addMore = (payload) => {
+export const addMore = payload => {
   return {
     type: 'ADD_MORE_GIFS',
     payload
@@ -18,7 +18,7 @@ export const toggleModal = () => {
   };
 };
 
-export const selectedGif = (payload) => {
+export const selectedGif = payload => {
   return {
     type: 'SELECTED_GIF',
     payload
